@@ -28,3 +28,18 @@ df=pd.get_dummies(df,columns=['Embarked'], drop_first=True)
 df=df.drop(['Name', 'Ticket', 'PassengerId'], axis=1)
 print(df.isnull().sum()) #verificar que no hay más nulos
 print(df.head())
+#análisis exploratorio de datos
+#gráfico de barras: supervivencia por sexo
+sns.barplot(x='Sex', y='Survived', data=df)
+plt.title('Supervivencia por Sexo')
+plt.show()
+#Histograma: Distribución de edad y supervivencia
+sns.histplot(data=df, x='Age', hue='Survived', multiple='stack')
+plt.title('Distribución de edad y supervivencia')
+plt.show()
+#heatmap de la matriz de correlación
+corr_matrix=df.corr()
+plt.figure(figsize=(10,8))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Matriz de correlación')
+plt.show()
