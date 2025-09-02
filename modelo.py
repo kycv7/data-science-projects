@@ -43,3 +43,15 @@ plt.figure(figsize=(10,8))
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f")
 plt.title('Matriz de correlación')
 plt.show()
+#entrenamiento del modelo de regresión logística
+#definir las características (x) y la variable objetivo (y)
+X=df.drop('Survived', axis=1)
+y=df['Survived']
+#dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test=train_test_split(X,y,test_size=0.2, random_state=42)
+#Inicializar y entrenar el modelo de regresión logística
+model=LogisticRegression(max_iter=200)
+model.fit(X_train,y_train)
+#hacer predicciones en el conjunto de prueba
+predictions=model.predict(X_test)
+#evaluación del modelo
