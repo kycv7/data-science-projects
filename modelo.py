@@ -55,3 +55,15 @@ model.fit(X_train,y_train)
 #hacer predicciones en el conjunto de prueba
 predictions=model.predict(X_test)
 #evaluación del modelo
+#evaluar la precisión del modelo
+accuracy=accuracy_score(y_test, predictions)
+print(f'precisión del modelo: {accuracy:.2f}')
+#mostrar la matriz de confusión
+cm=confusion_matrix(y_test, predictions)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.title('Matriz de confusión')
+plt.xlabel('predicho')
+plt.ylabel('real')
+plt.show()
+#mostrar el reporte de clasificación
+print(classification_report(y_test, predictions))
