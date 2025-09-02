@@ -17,3 +17,14 @@ print(df.head())
 #limpiar y transformar datos
 #Eliminar la columna 'Cabin' debido a la gran cantidad de valores nulos
 df=df.drop('Cabin', axis=1)
+#llenar los valores nulos en 'Age' con la media de la edad
+df['Age'].fillna(df['Age'].mean(), inplace=True)
+#llenar los valores nulos en 'Embarked' con el valor más común (moda)
+df['Embarked'].fillna(df['Embarked'].mode()[0], inplace=True)
+#convertir las variables categóricas 'sex' y 'embarked' a numéricas
+df['Sex']=df['Sex'].map({'male':0,'female':1})
+df=pd.get_dummies(df,columns=['Embarked'], drop_first=True)
+#eliminar columnas no necesarios para el modelo
+df=df.drop(['Name', 'Ticket', 'PassengerId'], axis=1)
+print(df.isnull().sum()) #verificar que no hay más nulos
+print(df.head())
