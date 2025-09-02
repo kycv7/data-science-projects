@@ -14,3 +14,6 @@ path = r"C:\Users\cklyf\.cache\kagglehub\datasets\yasserh\titanic-dataset\versio
 print(os.listdir(path))
 df=pd.read_csv(path + "/Titanic-Dataset.csv")
 print(df.head())
+#limpiar y transformar datos
+#Eliminar la columna 'Cabin' debido a la gran cantidad de valores nulos
+df=df.drop('Cabin', axis=1)
